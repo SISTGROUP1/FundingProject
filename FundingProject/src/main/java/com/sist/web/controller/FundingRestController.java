@@ -8,31 +8,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.*;
 import com.sist.web.dao.FundingDAO;
 import com.sist.web.entity.Funding;
 
 @RestController
 @CrossOrigin(origins = "*")
-public class MainRestController {
+public class FundingRestController {
 	@Autowired
 	private FundingDAO fDao;
 	
-	@GetMapping("/{start}")
-	public ResponseEntity<Map> main_data(@PathVariable("start") int start){
-		Map map = new HashMap();
+	@GetMapping("/funding/detail/{fno}")
+	public ResponseEntity<Funding> funding_detail(@PathVariable("fno") int fno){
+		Funding data = new Funding();
 		try {
-			int rowSize = 20;
-			int startpage = (rowSize*start)-(rowSize);
-			List<Funding> fList = fDao.fundingMainData(startpage);
-			int count = (int)fDao.count();
-			
-			map.put("fList", fList);
-			map.put("count", count);
+			data = fDao.fundingDetailData(fno);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<>(map,HttpStatus.OK);
+		return new ResponseEntity<>(data,HttpStatus.OK);
 	}
 }
