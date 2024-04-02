@@ -20,8 +20,8 @@ public interface FundingDAO extends JpaRepository<Funding, Integer>{
 	@Query(value = "SELECT * FROM funding "
 			+ "WHERE title LIKE CONCAT('%',:title,'%') "
 			+ "ORDER BY fno "
-			+ "LIMIT :start,20",nativeQuery = true)
-	public List<Funding> fundingFindData(@Param("title") String title,@Param("start") int start);
+			+ "LIMIT :page,20",nativeQuery = true)
+	public List<Funding> fundingFindData(@Param("title") String title,@Param("page") int page);
 	
 	@Query(value = "SELECT COUNT(*) FROM funding "
 			+ "WHERE title LIKE CONCAT('%',:title,'%')",nativeQuery = true)
