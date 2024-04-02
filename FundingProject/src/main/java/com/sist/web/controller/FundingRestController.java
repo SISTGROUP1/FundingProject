@@ -47,7 +47,9 @@ public class FundingRestController {
 	public ResponseEntity<Map> fundig_find(@PathVariable("page") int page,@PathVariable("fd") String fd){
 		Map map = new HashMap();
 		try {
-			List<Funding> fList = fDao.fundingFindData(fd, page);
+			int rowSize = 20;
+			int start = (rowSize*page)-(rowSize);
+			List<Funding> fList = fDao.fundingFindData(fd, start);
 			int count = fDao.fundingFindCount(fd);
 			map.put("fList", fList);
 			map.put("count", count);

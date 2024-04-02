@@ -19,17 +19,17 @@ public class SponsorRestController {
 	@Autowired
 	private SponsorDAO sDao;
 	
-//	@PostMapping("/sponsor/insert/{fno}")
-//	public ResponseEntity<Map> sponsorInsert(@PathVariable("fno") int fno,@RequestBody Sponsor sponsor){
-//		Map map = new HashMap();
-//		
-//		try {
-//			
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
-//		}
-//		
-//		return new ResponseEntity<>(map,HttpStatus.OK);
-//	}
+	@PostMapping("/sponsor/insert/{fno}")
+	public ResponseEntity<Map> sponsorInsert(@PathVariable("fno") int fno,@RequestBody Sponsor sponsor){
+		Map map = new HashMap();
+		
+		try {
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		return new ResponseEntity<>(map,HttpStatus.OK);
+	}
 }
