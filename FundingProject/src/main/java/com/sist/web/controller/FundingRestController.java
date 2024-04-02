@@ -28,8 +28,8 @@ public class FundingRestController {
 		Map map = new HashMap();
 		try {
 			Funding data = fDao.fundingDetailData(fno);
-			String[] slide = data.getSlide_img().split("^");
-			String[] detail = data.getDetail_img().split("^");
+			String[] slide = data.getSlide_img().split("\\^");
+			String[] detail = data.getDetail_img().split("\\^");
 			List<Sponsor> sList = sDao.findByFno(fno);
 			
 			map.put("data", data);
