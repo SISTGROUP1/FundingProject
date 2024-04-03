@@ -26,7 +26,7 @@ public class Board {
 	private String name,subject,content,pwd;
 	@Column(insertable = true,updatable = false)
 	private String regdate;
-	@Column(insertable = true,updatable = false)
+	@Column(insertable = true,updatable = true)
 	private int hit;
 	
 	@PrePersist

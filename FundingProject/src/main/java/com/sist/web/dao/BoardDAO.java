@@ -11,7 +11,7 @@ public interface BoardDAO extends JpaRepository<Board, Integer>{
 	//화면 출력
 	@Query(value = "SELECT * FROM jpaboard "
 			+ "ORDER BY no DESC "
-			+ "LIMIT :page,20",nativeQuery = true)
+			+ "LIMIT :page,10",nativeQuery = true)
 	public List<Board> boardList(@Param("page") int page);
 	//자세히 보기
 	public Board findByNo(int no);
