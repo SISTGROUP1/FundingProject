@@ -21,6 +21,7 @@ function App() {
         <Route path="/board/list" element={<BoardList />} />
         <Route path="/board/detail/:no" element={<BoardDetail />} />
         <Route path="/board/insert" element={<BoardInsert />} />
+        <Route path="/board/detail/:no" element={<BoardDetail />} />
       </Routes>
       <Footer />
     </BrowserRouter>
