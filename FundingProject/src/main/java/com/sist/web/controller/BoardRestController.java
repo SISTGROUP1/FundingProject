@@ -26,11 +26,22 @@ public class BoardRestController {
 	public ResponseEntity<Map> boardList(@PathVariable("page") int page){
 		Map map = new HashMap();
 		try {
-			List<Board> list = bDao.boardList(page);
+			int rowSize=10;
+			int start=(page*rowSize)-rowSize;
+			List<Board> list = bDao.boardList(start);
 			int count = (int)bDao.count();
+			int totalPage=(int)(Math.ceil(count/(double)rowSize));
+			
+			final int BLOCK=10;
+			int startBlockNum=((page-1)/BLOCK*BLOCK)+1;
+			int endBlockNum=((page-1)/BLOCK*BLOCK)+BLOCK;
+			if(endBlockNum>totalPage) endBlockNum=totalPage;
 			
 			map.put("bList", list);
 			map.put("count", count);
+			map.put("totalpage", totalPage);
+			map.put("startBlockNum", startBlockNum);
+			map.put("endBlockNum", endBlockNum);
 			
 		} catch (Exception e) {
 			// TODO: handle exception
