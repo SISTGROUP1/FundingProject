@@ -100,12 +100,12 @@ public class BoardRestController {
 		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/board/delete/{no}")
-	public ResponseEntity<String> boardDelete(@PathVariable("no") int no,@RequestBody Board board){
+	@DeleteMapping("/board/delete/{no}/{pwd}")
+	public ResponseEntity<String> boardDelete(@PathVariable("no") int no,@PathVariable("pwd") String pwd){
 		String result = "";
 		try {
 			Board _dbData = bDao.findByNo(no);
-			if(_dbData.getPwd().equals(board.getPwd())) {
+			if(_dbData.getPwd().equals(pwd)) {
 				bDao.delete(_dbData);
 				//비밀번호가 맞았을 시
 				result="YES";
