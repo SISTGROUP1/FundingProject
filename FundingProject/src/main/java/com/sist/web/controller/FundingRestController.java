@@ -23,21 +23,33 @@ public class FundingRestController {
 	@Autowired
 	private SponsorDAO sDao;
 	
-	@GetMapping("/funding/detail/{fno}")
-	public ResponseEntity<Map> funding_detail(@PathVariable("fno") int fno){
+	@GetMapping("/funding/detail/{fno}/{page}")
+	public ResponseEntity<Map> funding_detail(@PathVariable("fno") int fno,@PathVariable("page") int page){
 		Map map = new HashMap();
 		try {
 			Funding data = fDao.fundingDetailData(fno);
 			String[] slide = data.getSlide_img().split("\\^");
 			String[] detail = data.getDetail_img().split("\\^");
-			List<Sponsor> sList = sDao.findByFno(fno);
-			int sPage = (int)sDao.count();
+			int rowSize=5;
+			int start=(page*rowSize)-rowSize;
+			
+			List<Sponsor> sList = sDao.sponsorListData(fno, start);
+			int sPage = sDao.sponsorTotalCount(fno);
+			int totalPage=(int)(Math.ceil(sPage/(double)rowSize));
+			
+			final int BLOCK=10;
+			int startBlockNum=((page-1)/BLOCK*BLOCK)+1;
+			int endBlockNum=((page-1)/BLOCK*BLOCK)+BLOCK;
+			if(endBlockNum>totalPage) endBlockNum=totalPage;
 			
 			map.put("data", data);
 			map.put("slide", slide);
 			map.put("detail", detail);
 			map.put("sList", sList);
 			map.put("sPage", sPage);
+			map.put("startBlockNum", startBlockNum);
+			map.put("endBlockNum", endBlockNum);
+			map.put("totalpage", totalPage);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
