@@ -11,6 +11,7 @@ import lombok.Data;
     regdate datetime default now(),
     pay int,
     fno int,
+    msg varchar(1000),
     PRIMARY KEY(sno)
 );
  * 
@@ -20,7 +21,7 @@ import lombok.Data;
 public class Sponsor {
 	@Id
 	private int sno;
-	private String name,regdate;
+	private String name,regdate,msg;
 	private int pay,fno;
 
 }

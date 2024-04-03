@@ -24,7 +24,8 @@ public class SponsorRestController {
 		Map map = new HashMap();
 		
 		try {
-			
+			sponsor.setFno(fno);
+			sDao.save(sponsor);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
