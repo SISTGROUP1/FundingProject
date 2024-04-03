@@ -3,6 +3,9 @@ package com.sist.web.entity;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import org.aspectj.weaver.tools.Trace;
+import org.hibernate.annotations.DynamicUpdate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -20,10 +23,13 @@ hit int
  * */
 @Entity(name = "jpaboard")
 @Data
+@DynamicUpdate
 public class Board {
 	@Id
 	private int no;
-	private String name,subject,content,pwd;
+	private String name,subject,content;
+	@Column(insertable = true,updatable = false)
+	private String pwd;
 	@Column(insertable = true,updatable = false)
 	private String regdate;
 	@Column(insertable = true,updatable = true)
