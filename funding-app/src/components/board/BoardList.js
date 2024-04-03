@@ -45,11 +45,15 @@ export const BoardList = () => {
     return (
         <section id="blog" className="section">
             <div className="container text-center">
-                <div className="row text-left">
-                    <h3 style={{ "margin": "15px 0" }}>자유게시판</h3>
+                <div style={{"float":"left","width":"100%"}}>
+                    <h3 style={{ "margin": "15px 0"}}>자유게시판</h3>
+                </div>
+                <div className="text-right" style={{"clear":"both"}}>
                     <h3>
                         <button className="btn btn-sm btn-primary" onClick={boardInsertForm}>새글</button>
                     </h3>
+                </div>
+                <div className="row text-left">
                     <table className="table">
                         <thead>
                             <tr>

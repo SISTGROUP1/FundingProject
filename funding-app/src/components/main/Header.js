@@ -82,8 +82,8 @@ export const Header = () => {
                         {
                             !window.sessionStorage.getItem('id') &&
                             <li className="nav-item">
-                                ID : <input type="text" size={12} className="input-sm" placeholder="ID" ref={idRef} value={id} onChange={(e) => setId(e.target.value)} />&nbsp;
-                                PW : <input type="password" size={12} className="input-sm" placeholder="PW" ref={pwdRef} value={pwd} onChange={(e) => setPwd(e.target.value)} />&nbsp;
+                                ID : <input type="text" size={12} className="btn btn-sm" style={{"border":"1px solid black"}} placeholder="ID" ref={idRef} value={id} onChange={(e) => setId(e.target.value)} />&nbsp;
+                                PW : <input type="password" size={12} className="btn btn-sm" style={{"border":"1px solid black"}} placeholder="PW" ref={pwdRef} value={pwd} onChange={(e) => setPwd(e.target.value)} />&nbsp;
                                 <button class="btn btn-outline-primary btn-sm" onClick={loginBtn}>Login</button>
                             </li>
                         }
