@@ -44,12 +44,12 @@ export const BoardDetail = () => {
                                     {
                                         data.data.name === window.sessionStorage.getItem('id') && (
                                             <Fragment>
-                                                <Link className="btn btn-info btn-sm">수정</Link>&nbsp;
+                                                <Link className="btn btn-info btn-sm" to={"/board/update/"+data.data.no}>수정</Link>&nbsp;
                                                 <Link className="btn btn-danger btn-sm">삭제</Link>&nbsp;
                                             </Fragment>
                                         )
                                     }
-                                    <Link className="btn btn-primary btn-sm" onClick={() => nav(-1)}>목록</Link>
+                                    <Link className="btn btn-primary btn-sm" onClick={() => nav("/board/list")}>목록</Link>
                                 </td>
                             </tr>
                         </tbody>

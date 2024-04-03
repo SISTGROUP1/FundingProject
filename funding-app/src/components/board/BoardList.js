@@ -67,7 +67,7 @@ export const BoardList = () => {
                                     <tr>
                                         <td className="text-center" width="10%">{board.no}</td>
                                         <td width="45%">
-                                            <Link to={"/board/detail/"+board.no}>{board.subject}</Link>
+                                            <Link to={"/board/detail/" + board.no}>{board.subject}</Link>
                                         </td>
                                         <td className="text-center" width="15%">{board.name}</td>
                                         <td className="text-center" width="20%">{board.regdate}</td>
