@@ -51,7 +51,7 @@ export const BoardInsert = () => {
 
     return (
         <section id="blog" className="section">
-            <div className="container text-center">
+            <div className="container text-center" style={{"width":"40%"}}>
                 <div className="row text-left">
                     <h3 style={{ "margin": "15px 0" }}>게시물 작성</h3>
                     <table className="table">
