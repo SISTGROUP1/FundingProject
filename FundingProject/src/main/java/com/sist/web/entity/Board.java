@@ -1,8 +1,12 @@
 package com.sist.web.entity;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import lombok.Data;
 
 /*
@@ -24,4 +28,9 @@ public class Board {
 	private String regdate;
 	@Column(insertable = true,updatable = false)
 	private int hit;
+	
+	@PrePersist
+	public void regdate() {
+		this.regdate=LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+	}
 }
