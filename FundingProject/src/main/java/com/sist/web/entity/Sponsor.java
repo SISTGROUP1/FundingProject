@@ -30,7 +30,7 @@ public class Sponsor {
 	
 	@PrePersist
 	public void regdate() {
-		this.regdate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:MI:SS"));
+		this.regdate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 	}
 
 }

@@ -28,7 +28,7 @@ public class SponsorRestController {
 			sDao.save(sponsor);
 			map.put("msg", "YES");
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
