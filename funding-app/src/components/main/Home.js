@@ -38,42 +38,10 @@ export const Home = () => {
 
     return (
         <Fragment>
-            <header className="header" id="home">
+            <header id="home">
                 <div className="container">
-                    <div className="infos">
-                        <h6 className="subtitle">hello,I'm</h6>
-                        <h6 className="title">James Smith</h6>
-                        <p>UI/UX Designer</p>
-
-                        <div className="buttons pt-3">
-                            <button className="btn btn-primary rounded">HIRE ME</button>
-                            <button className="btn btn-dark rounded">DOWNLOAD CV</button>
-                        </div>
-
-                        <div className="socials mt-4">
-                            <a className="social-item" href="javascript:void(0)"><i className="ti-facebook"></i></a>
-                            <a className="social-item" href="javascript:void(0)"><i className="ti-google"></i></a>
-                            <a className="social-item" href="javascript:void(0)"><i className="ti-github"></i></a>
-                            <a className="social-item" href="javascript:void(0)"><i className="ti-twitter"></i></a>
-                        </div>
-                    </div>
                     <div className="img-holder">
-                        <img src="assets/imgs/man.svg" alt="" />
-                    </div>
-                </div>
-
-                <div className="widget">
-                    <div className="widget-item">
-                        <h2>124</h2>
-                        <p>Happy Clients</p>
-                    </div>
-                    <div className="widget-item">
-                        <h2>456</h2>
-                        <p>Project Completed</p>
-                    </div>
-                    <div className="widget-item">
-                        <h2>789</h2>
-                        <p>Awards Won</p>
+                        <img src="https://happybean-phinf.pstatic.net/20240219_28/1708334247978XRhI3_PNG/PC%25A9%25E1_2280x500_41c982.png" alt="" width={"100%"} style={{"paddingTop":"100px","backgroundColor":"green"}}/>
                     </div>
                 </div>
             </header>
