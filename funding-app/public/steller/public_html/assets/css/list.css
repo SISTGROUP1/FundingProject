@@ -1,0 +1,31 @@
+.pageChange{
+    border:1px solid #ccc;
+    color:#666;
+    width:28px;
+    height:28px;
+    border-radius: 4px;
+    margin:0 4px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    text-decoration: none;
+}
+.currentpage{
+    border:1px solid #0096FF;
+    color:#0096FF;
+    font-weight:bold;
+    width:28px;
+    height:28px;
+    border-radius: 4px;
+    margin:0 4px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.pagination{
+    display: block;
+}

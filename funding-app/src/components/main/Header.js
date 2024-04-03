@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export const Header = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light fixed-top" data-spy="affix" data-offset-top="0">
@@ -10,10 +12,13 @@ export const Header = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ml-auto align-items-center">
                         <li className="nav-item">
-                            <a className="nav-link" href="#home">Home</a>
+                            <Link className="nav-link" to={"/"}>Home</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#about">About</a>
+                            <Link className="nav-link" to={"/funding/search"}>Search</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to={"/board/list"}>Board</Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#service">Service</a>
