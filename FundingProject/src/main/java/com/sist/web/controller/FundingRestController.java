@@ -31,11 +31,13 @@ public class FundingRestController {
 			String[] slide = data.getSlide_img().split("\\^");
 			String[] detail = data.getDetail_img().split("\\^");
 			List<Sponsor> sList = sDao.findByFno(fno);
+			int sPage = (int)sDao.count();
 			
 			map.put("data", data);
 			map.put("slide", slide);
 			map.put("detail", detail);
 			map.put("sList", sList);
+			map.put("sPage", sPage);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
