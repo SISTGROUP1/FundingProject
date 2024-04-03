@@ -83,6 +83,7 @@ public class BoardRestController {
 		try {
 			Board _dbData = bDao.findByNo(no);
 			if(_dbData.getPwd().equals(board.getPwd())) {
+				board.setNo(no);
 				board.setHit(_dbData.getHit());
 				bDao.save(board);
 				//비밀번호가 맞았을 시
@@ -118,5 +119,16 @@ public class BoardRestController {
 			return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>(result,HttpStatus.OK);
+	}
+	@GetMapping("/board/updateData/{no}")
+	public ResponseEntity<Board> boardUpdateData(@PathVariable("no") int no) {
+		Board board=new Board();
+		try {
+			board=bDao.findByNo(no);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<Board>(board, HttpStatus.OK);
 	}
 }
