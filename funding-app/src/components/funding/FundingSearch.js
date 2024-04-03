@@ -36,8 +36,8 @@ export const FundingSearch = () => {
                     <table className="table">
                         <thead>
                             <tr>
-                                <td>
-                                    <input type="text" className="input-sm" size={20} ref={fdRef} value={fd} onChange={(e) => setFd(e.target.value)} />&nbsp;
+                                <td className="text-right">
+                                    <input type="text" className="btn btn-sm"style={{"border":"1px solid black"}} size={20} ref={fdRef} value={fd} onChange={(e) => setFd(e.target.value)} />&nbsp;
                                     <button className="btn btn-sm btn-primary" onClick={searchBtn}>검색</button>
                                 </td>
                             </tr>

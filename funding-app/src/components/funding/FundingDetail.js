@@ -111,8 +111,8 @@ export const FundingDetail = () => {
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <td className="text-center">
-                                                    <ul class="pagination pagination-sm">
+                                                <td className="text-center" style={{"border":"none"}}>
+                                                    <ul class="pagination pagination-sm" style={{"display":"-webkit-inline-box"}}>
                                                         {row}
                                                     </ul>
                                                 </td>
