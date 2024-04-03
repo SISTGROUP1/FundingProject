@@ -1,19 +1,51 @@
 import { useQuery } from "react-query"
 import { Link, useParams } from "react-router-dom"
 import apiClient from "../../http-commons"
+import { Fragment, useState } from "react"
+import Pagination from "react-js-pagination"
 
 export const FundingDetail = () => {
     const { fno } = useParams()
-
+    const [curpage, setCurpage] = useState(1)
+    const userId = window.sessionStorage.getItem('id')
+    const percentage = '100%'
+    console.log(userId)
     const { isLoading, isError, error, data } = useQuery(
-        ['funding-detail', fno],
+        ['funding-detail', curpage, fno],
         async () => {
-            return await apiClient.get(`/funding/detail/${fno}`)
+            return await apiClient.get(`/funding/detail/${fno}/${curpage}`)
         }
     )
     if (isLoading) return <h1 className="text-center">Loading...</h1>
     if (isError) return <h1 className="text-center">{error.message}</h1>
     console.log(data)
+
+    const fundingForm = () => {
+        if (window.sessionStorage.getItem('id') === null) {
+            alert('로그인이 필요한 서비스입니다.')
+        } else {
+            window.location.href = "/funding/fund/" + data.data.data.fno
+        }
+    }
+
+    const handleChange = (page) => {
+        setCurpage(page)
+    }
+
+    let row=[]
+    if(data.data.startBlockNum>1){
+        row.push(<li class="page-item"><a class="page-link" href="#"><i class="ti-angle-double-left"></i></a></li>)
+    }
+    for(let i=data.data.startBlockNum;i<=data.data.endBlockNum;i++){
+        if(curpage===i){
+            row.push(<li class="page-item active"><a class="page-link" onClick={()=>handleChange(i)}>{i}</a></li>)
+        }else{
+            row.push(<li class="page-item"><a class="page-link" onClick={()=>handleChange(i)}>{i}</a></li>)
+        }
+    }
+    if(data.data.endBlockNum<data.data.totalpage){
+        row.push(<li class="page-item"><a class="page-link" href="#"><i class="ti-angle-double-right"></i></a></li>)
+    }
 
     return (
         <section id="blog" className="section">
@@ -31,14 +63,17 @@ export const FundingDetail = () => {
                                 <td width={"40%"}>{data.data.data.subtitle}</td>
                             </tr>
                             <tr>
-                                <td width={"40%"}>인원수</td>
+                                <td width={"40%"}>후원건수 : {data.data.sPage}</td>
                             </tr>
                             <tr>
                                 <td width={"40%"}>{data.data.data.funding}</td>
                             </tr>
                             <tr>
                                 <td width={"40%"} className="text-right">
-                                    <Link className="btn btn-lg btn-primary" to={"/funding/fund/"+data.data.data.fno}>펀딩</Link>
+                                    <div class="progress mt-2 mb-3">
+                                        <div class="progress-bar" role="progressbar" style={{ "width": percentage }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>90%</span></div>
+                                    </div>
+                                    <button className="btn btn-lg btn-primary" onClick={fundingForm}>펀딩</button>
                                 </td>
                             </tr>
                         </thead>
@@ -52,7 +87,38 @@ export const FundingDetail = () => {
                                     }
                                 </td>
                                 <td width={"40%"}>
-                                    그 외
+                                    <table className="table">
+                                        <tbody>
+                                            {
+                                                data.data.sList &&
+                                                data.data.sList.map((s) =>
+                                                    <Fragment>
+                                                        <tr>
+                                                            <td width={"20%"}>{s.name}</td>
+                                                            <td width={"80%"}>{s.regdate}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colSpan={2}>{s.pay.toLocaleString()}원</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colSpan={2}>
+                                                                {s.msg}
+                                                            </td>
+                                                        </tr>
+                                                    </Fragment>
+                                                )
+                                            }
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td className="text-center">
+                                                    <ul class="pagination pagination-sm">
+                                                        {row}
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
                                 </td>
                             </tr>
                         </tbody>

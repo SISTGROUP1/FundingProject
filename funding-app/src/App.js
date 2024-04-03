@@ -7,6 +7,7 @@ import { BoardList } from "./components/board/BoardList";
 import BoardDetail from "./components/board/BoardDetail";
 import { FundingSearch } from "./components/funding/FundingSearch";
 import { FundingFund } from "./components/funding/FundingFund";
+import { BoardInsert } from "./components/board/BoardInsert";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/funding/fund/:fno" element={<FundingFund />} />
         <Route path="/board/list" element={<BoardList />} />
         <Route path="/board/detail/:no" element={<BoardDetail />} />
+        <Route path="/board/insert" element={<BoardInsert />} />
       </Routes>
       <Footer />
     </BrowserRouter>
