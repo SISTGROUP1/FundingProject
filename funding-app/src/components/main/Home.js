@@ -115,7 +115,7 @@ export const Home = () => {
                     <div style={{ "height": "10px" }}></div>
                     <div className="container text-center">
                         <div className="text-center">
-                            <ul class="pagination pagination-sm">
+                            <ul class="pagination pagination-sm" style={{"display":"-webkit-inline-box"}}>
                                 {row}
                             </ul>
                         </div>

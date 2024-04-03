@@ -79,7 +79,7 @@ export const BoardList = () => {
                         <tfoot>
                             <tr>
                                 <td colSpan={5} className="text-center">
-                                    <ul class="pagination pagination-sm">
+                                    <ul class="pagination pagination-sm" style={{"display":"-webkit-inline-box"}}>
                                         {row}
                                     </ul>
                                 </td>
