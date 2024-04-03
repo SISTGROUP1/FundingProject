@@ -21,6 +21,21 @@ export const Home = () => {
         setCurpage(page)
     }
 
+    let row = []
+    if (data.data.startBlockNum > 1) {
+        row.push(<li class="page-item"><a class="page-link" href="#"><i class="ti-angle-double-left"></i></a></li>)
+    }
+    for (let i = data.data.startBlockNum; i <= data.data.endBlockNum; i++) {
+        if (curpage === i) {
+            row.push(<li class="page-item active"><a class="page-link" onClick={() => handleChange(i)}>{i}</a></li>)
+        } else {
+            row.push(<li class="page-item"><a class="page-link" onClick={() => handleChange(i)}>{i}</a></li>)
+        }
+    }
+    if (data.data.endBlockNum < data.data.totalpage) {
+        row.push(<li class="page-item"><a class="page-link" href="#"><i class="ti-angle-double-right"></i></a></li>)
+    }
+
     return (
         <Fragment>
             <header className="header" id="home">
@@ -100,16 +115,9 @@ export const Home = () => {
                     <div style={{ "height": "10px" }}></div>
                     <div className="container text-center">
                         <div className="text-center">
-                            <Pagination
-                                activePage={curpage}
-                                itemsCountPerPage={20}
-                                totalItemsCount={data.data.count}
-                                pageRangeDisplayed={10}
-                                prevPageText={"<"}
-                                nextPageText={">"}
-                                onChange={handleChange}
-                                style={{ "width": "100%" }}
-                            />
+                            <ul class="pagination pagination-sm">
+                                {row}
+                            </ul>
                         </div>
                     </div>
                 </section>
