@@ -1,7 +1,11 @@
 package com.sist.web.entity;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import lombok.Data;
 
 /*
@@ -11,6 +15,7 @@ import lombok.Data;
     regdate datetime default now(),
     pay int,
     fno int,
+    msg varchar(1000),
     PRIMARY KEY(sno)
 );
  * 
@@ -20,7 +25,12 @@ import lombok.Data;
 public class Sponsor {
 	@Id
 	private int sno;
-	private String name,regdate;
+	private String name,regdate,msg;
 	private int pay,fno;
+	
+	@PrePersist
+	public void regdate() {
+		this.regdate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+	}
 
 }

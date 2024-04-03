@@ -26,9 +26,18 @@ public class MainRestController {
 			int startpage = (rowSize*start)-(rowSize);
 			List<Funding> fList = fDao.fundingMainData(startpage);
 			int count = (int)fDao.count();
+			int totalpage=(int)(Math.ceil(count/(double)rowSize));
+			
+			final int BLOCK=10;
+			int startBlockNum=((start-1)/BLOCK*BLOCK)+1;
+			int endBlockNum=((start-1)/BLOCK*BLOCK)+BLOCK;
+			if(endBlockNum>totalpage) endBlockNum=totalpage;
 			
 			map.put("fList", fList);
 			map.put("count", count);
+			map.put("totalpage", totalpage);
+			map.put("startBlockNum", startBlockNum);
+			map.put("endBlockNum", endBlockNum);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
