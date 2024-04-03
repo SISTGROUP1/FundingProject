@@ -45,11 +45,11 @@ public class FundingRestController {
 				amount = Integer.parseInt(data.getFunding().replaceAll("[^1-9]", ""))*10000;
 			}
 			else if(data.getFunding().contains("억 원")){
-				amount = Integer.parseInt(data.getFunding().replaceAll("[^1-9]", ""))*100000000;
+				amount = Integer.parseInt(data.getFunding().replaceAll("[^1-9]", ""))*10000000;
 			}
-			float percent = 0.0f;
+			double percent = 0.0;
 			try {
-				percent = (totalPay/amount)*100;
+				percent = ((double)totalPay/amount)*100;
 			} catch (Exception e) {
 				// TODO: handle exception
 				percent = 0.0f;
@@ -69,7 +69,7 @@ public class FundingRestController {
 			map.put("totalpage", totalPage);
 			map.put("totalPay", totalPay);
 			map.put("amount", amount);
-			map.put("percent", percent);
+			map.put("percent", String.format("%.2f", percent));
 		} catch (Exception e) {
 			// TODO: handle exception
 			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
