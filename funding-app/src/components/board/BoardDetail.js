@@ -45,7 +45,7 @@ export const BoardDetail = () => {
                                         data.data.name === window.sessionStorage.getItem('id') && (
                                             <Fragment>
                                                 <Link className="btn btn-info btn-sm" to={"/board/update/" + data.data.no}>수정</Link>&nbsp;
-                                                <Link className="btn btn-danger btn-sm">삭제</Link>&nbsp;
+                                                <Link className="btn btn-danger btn-sm" to={"/board/delete/" + data.data.no}>삭제</Link>&nbsp;
                                             </Fragment>
                                         )
                                     }
