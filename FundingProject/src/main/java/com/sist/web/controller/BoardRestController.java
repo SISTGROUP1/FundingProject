@@ -83,6 +83,7 @@ public class BoardRestController {
 		try {
 			Board _dbData = bDao.findByNo(no);
 			if(_dbData.getPwd().equals(board.getPwd())) {
+				board.setNo(no);
 				board.setHit(_dbData.getHit());
 				bDao.save(board);
 				//비밀번호가 맞았을 시
