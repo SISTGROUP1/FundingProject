@@ -26,6 +26,7 @@ public class SponsorRestController {
 		try {
 			sponsor.setFno(fno);
 			sDao.save(sponsor);
+			map.put("msg", "YES");
 		} catch (Exception e) {
 			// TODO: handle exception
 			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
