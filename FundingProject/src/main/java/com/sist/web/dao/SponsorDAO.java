@@ -19,4 +19,8 @@ public interface SponsorDAO extends JpaRepository<Sponsor, Integer>{
 			+ "WHERE fno=:fno",nativeQuery = true)
 	public int sponsorTotalCount(@Param("fno") int fno);
 	public List<Sponsor> findByFno(int fno);
+	
+	@Query(value = "SELECT sum(pay) FROM sponsor "
+			+ "WHERE fno=:fno",nativeQuery = true)
+	public int sponsorSumPay(@Param("fno") int fno);
 }

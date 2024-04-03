@@ -36,7 +36,24 @@ public class FundingRestController {
 			List<Sponsor> sList = sDao.sponsorListData(fno, start);
 			int sPage = sDao.sponsorTotalCount(fno);
 			int totalPage=(int)(Math.ceil(sPage/(double)rowSize));
-			
+			int totalPay = 0;
+			if(sPage!=0) {
+				totalPay = sDao.sponsorSumPay(fno);
+			}
+			int amount = 0;
+			if(data.getFunding().contains("만 원")) {
+				amount = Integer.parseInt(data.getFunding().replaceAll("[^1-9]", ""))*10000;
+			}
+			else if(data.getFunding().contains("억 원")){
+				amount = Integer.parseInt(data.getFunding().replaceAll("[^1-9]", ""))*100000000;
+			}
+			float percent = 0.0f;
+			try {
+				percent = (totalPay/amount)*100;
+			} catch (Exception e) {
+				// TODO: handle exception
+				percent = 0.0f;
+			}
 			final int BLOCK=10;
 			int startBlockNum=((page-1)/BLOCK*BLOCK)+1;
 			int endBlockNum=((page-1)/BLOCK*BLOCK)+BLOCK;
@@ -50,6 +67,9 @@ public class FundingRestController {
 			map.put("startBlockNum", startBlockNum);
 			map.put("endBlockNum", endBlockNum);
 			map.put("totalpage", totalPage);
+			map.put("totalPay", totalPay);
+			map.put("amount", amount);
+			map.put("percent", percent);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);

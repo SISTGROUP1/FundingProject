@@ -26,4 +26,5 @@ public interface FundingDAO extends JpaRepository<Funding, Integer>{
 	@Query(value = "SELECT COUNT(*) FROM funding "
 			+ "WHERE title LIKE CONCAT('%',:title,'%')",nativeQuery = true)
 	public int fundingFindCount(@Param("title") String title);
+
 }
