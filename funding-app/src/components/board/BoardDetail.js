@@ -18,9 +18,10 @@ export const BoardDetail = () => {
 
     return (
         <section id="blog" className="section">
+            <div style={{"paddingTop":"30px"}}></div>
             <div className="container text-center">
                 <div className="row text-left">
-                    <table className="table">
+                    <table className="table" style={{"border":"1px solid #dee2e6"}}>
                         <tbody>
                             <tr>
                                 <td>
@@ -28,15 +29,19 @@ export const BoardDetail = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <td className="text-right">
+                                <td className="text-right" style={{"border":"none","padding":"0px 12px 0px 0px"}}>
                                     {data.data.name}&nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="text-right" style={{"border":"none","color":"#979797","padding":"0px 12px 0px 0px"}}>
                                     {data.data.regdate}&nbsp;
                                     조회수 {data.data.hit}
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <pre>{data.data.content}</pre>
+                                    <pre style={{"border":"none","backgroundColor":"white"}}>{data.data.content}</pre>
                                 </td>
                             </tr>
                             <tr>

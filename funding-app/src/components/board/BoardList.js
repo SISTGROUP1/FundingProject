@@ -74,7 +74,7 @@ export const BoardList = () => {
                                             <Link to={"/board/detail/" + board.no}>{board.subject}</Link>
                                         </td>
                                         <td className="text-center" width="15%">{board.name}</td>
-                                        <td className="text-center" width="20%">{board.regdate}</td>
+                                        <td className="text-center" width="20%">{board.regdate.split(" ")[0]}</td>
                                         <td className="text-center" width="10%">{board.hit}</td>
                                     </tr>
                                 )
