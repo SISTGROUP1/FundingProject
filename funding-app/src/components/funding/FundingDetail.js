@@ -2,6 +2,7 @@ import { useQuery } from "react-query"
 import { Link, useParams } from "react-router-dom"
 import apiClient from "../../http-commons"
 import { Fragment, useState } from "react"
+import { setCookie } from "../commons/CookieUtil"
 
 export const FundingDetail = () => {
     const { fno } = useParams()
@@ -12,12 +13,21 @@ export const FundingDetail = () => {
         ['funding-detail', curpage, fno],
         async () => {
             return await apiClient.get(`/funding/detail/${fno}/${curpage}`)
+        },{
+            onSuccess:(response)=>{
+                // console.log("이미지 : "+response.data.data.img)
+                setCookie("funding"+fno,response.data.data.img)
+            }
+        },{
+            onError:(error)=>{
+                console.log(error.response)
+            }
         }
     )
     if (isLoading) return <h1 className="text-center">Loading...</h1>
     if (isError) return <h1 className="text-center">{error.message}</h1>
-    console.log(data)
-    console.log(data.data.percent)
+    // console.log(data)
+    // console.log(data.data.percent)
 
     const fundingForm = () => {
         if (window.sessionStorage.getItem('id') === null) {

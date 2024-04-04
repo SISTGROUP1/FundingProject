@@ -2,9 +2,14 @@ import { Fragment, useState } from "react"
 import { useQuery } from "react-query"
 import apiClient from "../../http-commons"
 import { Link } from "react-router-dom"
-import Pagination from "react-js-pagination"
+import { CookieUtil } from "../commons/CookieUtil"
+import { useCookies } from "react-cookie"
 
 export const Home = () => {
+    const [cookies,setCookies]=useCookies('funding')
+    const cookiesKeys=Object.keys(cookies)
+    const cookiesValues=Object.values(cookies)
+    console.log(cookies)
     const [curpage, setCurpage] = useState(1)
     const [fd, setFd] = useState('')
     const { isLoading, isError, error, data } = useQuery(
@@ -86,6 +91,19 @@ export const Home = () => {
                             <ul class="pagination pagination-sm" style={{"display":"-webkit-inline-box"}}>
                                 {row}
                             </ul>
+                        </div>
+                    </div>
+                    <div style={{"height":"20px"}}></div>
+                    <div className="container text-center">
+                        <div className="text-left">
+                            {
+                                cookies &&
+                                cookiesKeys.map((key,index)=>
+                                    <Link to={"/funding/detail/"+key.replace('funding','')}>
+                                        <img src={cookiesValues[index]} style={{"width":"100px","height":"100px"}}/>&nbsp;
+                                    </Link>
+                                )
+                            }
                         </div>
                     </div>
                 </section>
