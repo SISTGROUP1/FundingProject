@@ -8,7 +8,6 @@ export const FundingDetail = () => {
     const { fno } = useParams()
     const [curpage, setCurpage] = useState(1)
     const userId = window.sessionStorage.getItem('id')
-    const percentage = '100%'
     console.log(userId)
     const { isLoading, isError, error, data } = useQuery(
         ['funding-detail', curpage, fno],
@@ -19,6 +18,7 @@ export const FundingDetail = () => {
     if (isLoading) return <h1 className="text-center">Loading...</h1>
     if (isError) return <h1 className="text-center">{error.message}</h1>
     console.log(data)
+    console.log(data.data.percent)
 
     const fundingForm = () => {
         if (window.sessionStorage.getItem('id') === null) {
@@ -54,7 +54,7 @@ export const FundingDetail = () => {
                     <table className="table">
                         <thead>
                             <tr>
-                                <td rowSpan={5} width={"60%"}>
+                                <td rowSpan={6} width={"60%"}>
                                     <img src={data.data.slide[0]} style={{ "width": "100%" }} />
                                 </td>
                                 <td width={"40%"}>{data.data.data.title}</td>
@@ -71,8 +71,10 @@ export const FundingDetail = () => {
                             <tr>
                                 <td width={"40%"} className="text-right">
                                     <div class="progress mt-2 mb-3">
-                                        <div class="progress-bar" role="progressbar" style={{ "width": percentage }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>90%</span></div>
+                                        <div class="progress-bar" role="progressbar" style={{ "width": data.data.percent+"%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>90%</span></div>
                                     </div>
+                                    {data.data.totalPay.toLocaleString()}원
+                                    <span style={{"margin":"0px 15px"}}>{data.data.percent}% / 100%</span>
                                     <button className="btn btn-lg btn-primary" onClick={fundingForm}>펀딩</button>
                                 </td>
                             </tr>
