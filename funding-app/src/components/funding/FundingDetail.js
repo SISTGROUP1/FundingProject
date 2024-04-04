@@ -2,7 +2,6 @@ import { useQuery } from "react-query"
 import { Link, useParams } from "react-router-dom"
 import apiClient from "../../http-commons"
 import { Fragment, useState } from "react"
-import Pagination from "react-js-pagination"
 
 export const FundingDetail = () => {
     const { fno } = useParams()
@@ -110,16 +109,14 @@ export const FundingDetail = () => {
                                                     </Fragment>
                                                 )
                                             }
-                                        </tbody>
-                                        <tfoot>
                                             <tr>
-                                                <td className="text-center" style={{"border":"none"}}>
+                                                <td className="text-center" style={{"border":"none"}} colSpan={"2"}>
                                                     <ul class="pagination pagination-sm" style={{"display":"-webkit-inline-box"}}>
                                                         {row}
                                                     </ul>
                                                 </td>
                                             </tr>
-                                        </tfoot>
+                                        </tbody>
                                     </table>
                                 </td>
                             </tr>
